@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
-const PlaceList = ({place}) => {
+const PlaceCard = ({place, onCardClick}) => {
   return <article className="cities__place-card place-card">
     {
       place.isPremium ? <div className="place-card__mark">
@@ -34,15 +33,21 @@ const PlaceList = ({place}) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{place.title}</a>
+        <a href="#" onClick={onCardClick}>{place.title}</a>
       </h2>
       <p className="place-card__type">{place.type}</p>
     </div>
   </article>;
 };
-
-PlaceList.propTypes = {
-  place: PropTypes.object.isRequired,
+PlaceCard.propTypes = {
+  place: PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    isPremium: PropTypes.bool,
+    img: PropTypes.string,
+    type: PropTypes.oneOf([`Apartment`, `Private room`]),
+  }),
+  onCardClick: PropTypes.func,
 };
 
-export default PlaceList;
+export default PlaceCard;
