@@ -8,8 +8,15 @@ const App = (props) => {
     placesList = {placesList}/>;
 };
 
+
 App.propTypes = {
-  placesList: PropTypes.array.isRequired,
+  placesList: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    price: PropTypes.number,
+    isPremium: PropTypes.bool,
+    img: PropTypes.string,
+    type: PropTypes.oneOf([`Apartment`, `Private room`]),
+  })).isRequired,
 };
 
 export default App;
