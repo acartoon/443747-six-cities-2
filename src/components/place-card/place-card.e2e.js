@@ -6,18 +6,24 @@ import PlaceCard from "./place-card.jsx";
 Enzyme.configure({adapter: new Adapter()});
 
 it(`Place card on title click`, () => {
-  const onCardClick = jest.fn();
+  const onTitleClick = jest.fn();
+  const onActiveCard = jest.fn();
   const placeCard = shallow(<PlaceCard
+    id = {15}
     title = {`Beautiful & luxurious apartment at great location`}
     price = {120}
     isPremium = {true}
     img = {`img/apartment-01.jpg`}
     type = {`Apartment`}
-    onCardClick = {() => null}
+    onActiveCard = {onActiveCard}
+    onTitleClick = {onTitleClick}
   />);
 
-  const placeCardTitle = placeCard.find(`.place-card__name > a`);
-  placeCardTitle.simulate(`click`);
+  const card = placeCard.find(`.place-card`);
+  const cardTitle = placeCard.find(`.place-card__name > a`);
+  cardTitle.simulate(`click`);
+  card.simulate(`mouseEnter`);
 
-  expect(onCardClick).toHaveBeenCalledTimes(1);
+
+  expect(onActiveCard).toHaveBeenCalledTimes(1, {id: 15});
 });

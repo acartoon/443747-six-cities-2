@@ -1,4 +1,4 @@
-export const PLACELIST = [
+export const OFFERS = [
   {
     title: `Beautiful & luxurious apartment at great location`,
     price: 120,
@@ -35,3 +35,7 @@ export const PLACELIST = [
     type: `Private room`,
   }
 ];
+
+OFFERS.forEach((offer) => {
+  offer.id = Math.floor(Math.random() * 1000);
+});

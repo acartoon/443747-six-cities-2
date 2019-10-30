@@ -1,13 +1,13 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./components/app/app.jsx";
-import {PLACELIST} from "./data.js";
+import {OFFERS} from "./mocks/offers.js";
 
 
 const init = () => {
   ReactDOM.render(
       <App
-        placesList = {PLACELIST}/>,
+        offers = {OFFERS}/>,
       document.querySelector(`#root`)
   );
 };

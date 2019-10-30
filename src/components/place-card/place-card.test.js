@@ -6,8 +6,9 @@ it(`PlaceList component render correct`, () => {
   const tree = renderer
     .create(
         <PlaceCard
-          place = {
+          offer = {
             {
+              id: 15,
               title: `Beautiful & luxurious apartment at great location`,
               price: 120,
               isPremium: true,
