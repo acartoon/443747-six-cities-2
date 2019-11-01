@@ -1,22 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const PlaceCard = ({place, onCardClick}) => {
-  return <article className="cities__place-card place-card">
+const PlaceCard = ({offer, onActiveCard, onTitleClick}) => {
+  return <article className="cities__place-card place-card" onMouseEnter={() => onActiveCard(offer.id)} onMouseLeave={() => onActiveCard(null)}>
     {
-      place.isPremium ? <div className="place-card__mark">
+      offer.isPremium ? <div className="place-card__mark">
         <span>Premium</span>
       </div> : ``
     }
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={place.img} width="260" height="200" alt="Place image"/>
+        <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image"/>
       </a>
     </div>
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
-          <b className="place-card__price-value">&euro;{place.price}</b>
+          <b className="place-card__price-value">&euro;{offer.price}</b>
           <span className="place-card__price-text">&nbsp;&#47;&nbsp;night</span>
         </div>
         <button className="place-card__bookmark-button button" type="button">
@@ -33,21 +33,23 @@ const PlaceCard = ({place, onCardClick}) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={onCardClick}>{place.title}</a>
+        <a href="#" onClick={onTitleClick}> {offer.title}</a>
       </h2>
-      <p className="place-card__type">{place.type}</p>
+      <p className="place-card__type">{offer.type}</p>
     </div>
   </article>;
 };
 PlaceCard.propTypes = {
-  place: PropTypes.shape({
+  offer: PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
     isPremium: PropTypes.bool,
     img: PropTypes.string,
     type: PropTypes.oneOf([`Apartment`, `Private room`]),
   }),
-  onCardClick: PropTypes.func,
+  onActiveCard: PropTypes.func,
+  onTitleClick: PropTypes.func,
 };
 
 export default PlaceCard;
