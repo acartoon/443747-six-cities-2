@@ -1,6 +1,7 @@
 import React from "react";
 import PlaceList from "../place-list/place-list.jsx";
 import PropTypes from "prop-types";
+import Map from "../map/map.jsx";
 
 const Main = (props) => {
   const {offers} = props;
@@ -96,7 +97,7 @@ const Main = (props) => {
             <PlaceList offers={offers}/>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map offers={offers}/>
           </div>
         </div>
       </div>
@@ -106,6 +107,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
     isPremium: PropTypes.bool,

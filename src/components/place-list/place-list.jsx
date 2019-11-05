@@ -33,6 +33,7 @@ export default class PlaceList extends PureComponent {
 
 PlaceList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
     title: PropTypes.string,
     price: PropTypes.number,
     isPremium: PropTypes.bool,
