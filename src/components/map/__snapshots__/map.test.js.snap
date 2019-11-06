@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PlaceList component render correct 1`] = `
+exports[`Map component render correct 1`] = `
 <section
   className="cities__map map"
 >
