@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
+import Map from "./map";
 import {OFFERS} from "../../mocks/offers";
 
 jest.mock(`leaflet`, () => {
@@ -24,10 +24,10 @@ jest.mock(`leaflet`, () => {
   };
 });
 
-it(`PlaceList component render correct`, () => {
+it(`Map component render correct`, () => {
   const tree = renderer
       .create(
-          <Main
+          <Map
             offers = {OFFERS}
           />
       )
