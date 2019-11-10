@@ -2,6 +2,7 @@ import React from "react";
 import PlaceCard from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
 import {PureComponent} from 'react';
+import offersPropTypes from "../../mocks/prop-types.js";
 
 export default class PlaceList extends PureComponent {
   constructor(props) {
@@ -32,13 +33,6 @@ export default class PlaceList extends PureComponent {
 }
 
 PlaceList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    isPremium: PropTypes.bool,
-    img: PropTypes.string,
-    type: PropTypes.oneOf([`Apartment`, `Private room`]),
-  })).isRequired,
+  offers: PropTypes.arrayOf(offersPropTypes).isRequired,
   onActiveCard: PropTypes.func,
 };

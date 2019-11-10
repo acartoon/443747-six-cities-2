@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import offersPropTypes from '../../mocks/prop-types'
 
 const PlaceCard = ({offer, onActiveCard, onTitleClick}) => {
   return <article className="cities__place-card place-card" onMouseEnter={() => onActiveCard(offer.id)} onMouseLeave={() => onActiveCard(null)}>
     {
-      offer.isPremium ? <div className="place-card__mark">
+      offer.is_premium ? <div className="place-card__mark">
         <span>Premium</span>
       </div> : ``
     }
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image"/>
+        <img className="place-card__image" src={offer.preview_image} width="260" height="200" alt="Place image"/>
       </a>
     </div>
     <div className="place-card__info">
@@ -40,14 +41,7 @@ const PlaceCard = ({offer, onActiveCard, onTitleClick}) => {
   </article>;
 };
 PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    isPremium: PropTypes.bool,
-    img: PropTypes.string,
-    type: PropTypes.oneOf([`Apartment`, `Private room`]),
-  }),
+  offer: offersPropTypes.isRequired,
   onActiveCard: PropTypes.func,
   onTitleClick: PropTypes.func,
 };

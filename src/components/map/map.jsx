@@ -2,7 +2,7 @@ import React from "react";
 import {PureComponent} from 'react';
 import leaflet from 'leaflet';
 import PropTypes from "prop-types";
-
+import offersPropTypes from '../../mocks/prop-types'
 
 export default class Map extends PureComponent {
   constructor(props) {
@@ -22,8 +22,15 @@ export default class Map extends PureComponent {
 
   componentDidMount() {
     const {offers} = this.props;
-    const coordsOffers = offers.map((offer) => offer.coords);
-
+    
+    const coordsOffers = offers.reduce((coords, offer) => {
+      let coordsOffer = [];
+      coordsOffer.push(offer.location.latitude);
+      coordsOffer.push(offer.location.longitude);
+      coords.push(coordsOffer)
+      return coords
+    }, [])
+  
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
@@ -53,12 +60,5 @@ export default class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    isPremium: PropTypes.bool,
-    img: PropTypes.string,
-    type: PropTypes.oneOf([`Apartment`, `Private room`]),
-  })).isRequired
+  offers: PropTypes.arrayOf(offersPropTypes).isRequired,
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import propTypes from "../../mocks/prop-types";
 
 
 const locations = (props) => {
@@ -38,15 +39,6 @@ const locations = (props) => {
           </ul>;
 }
 
-Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    price: PropTypes.number,
-    isPremium: PropTypes.bool,
-    img: PropTypes.string,
-    type: PropTypes.oneOf([`Apartment`, `Private room`]),
-  })).isRequired,
-};
+Main.propTypes = propTypes;
 
 export default Main;
