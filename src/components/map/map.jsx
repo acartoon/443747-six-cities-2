@@ -11,7 +11,6 @@ export default class Map extends PureComponent {
     this._zoom = 12;
     this._zoomControl = false;
     this._marker = true;
-
   }
 
   render() {
