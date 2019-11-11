@@ -2,15 +2,16 @@ import React from "react";
 import {PureComponent} from 'react';
 import leaflet from 'leaflet';
 import PropTypes from "prop-types";
-import offersPropTypes from '../../mocks/prop-types'
 
 export default class Map extends PureComponent {
   constructor(props) {
     super(props);
-    this._city = [52.38333, 4.9];
-    this._zoom = 12;
+    this._city= props.activeCity;
+    this._coords = props.coords;
+    this._zoom = props.activeCity.zoom;
     this._zoomControl = false;
     this._marker = true;
+    this._iconSize = [30, 30];
   }
 
   render() {
@@ -20,29 +21,21 @@ export default class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
-    
-    const coordsOffers = offers.reduce((coords, offer) => {
-      let coordsOffer = [];
-      coordsOffer.push(offer.location.latitude);
-      coordsOffer.push(offer.location.longitude);
-      coords.push(coordsOffer)
-      return coords
-    }, [])
-  
+    const center = [];
+    center.push(this._city.latitude, this._city.longitude);
+
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: this._iconSize,
     });
 
     const map = leaflet.map(`map`, {
-      center: this._city,
+      center,
       zoom: this._zoom,
       zoomControl: this._zoomControl,
       marker: this._marker,
     });
-
-    map.setView(this._city, this._zoom);
+    map.setView(center, this._zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -50,7 +43,7 @@ export default class Map extends PureComponent {
       })
       .addTo(map);
 
-    coordsOffers.forEach((coord) => {
+      this._coords.forEach((coord) => {
       leaflet
       .marker(coord, {icon})
       .addTo(map);
@@ -59,5 +52,10 @@ export default class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(offersPropTypes).isRequired,
+  coords: PropTypes.arrayOf(PropTypes.array).isRequired,
+  activeCity: PropTypes.shape({ 
+    latitude: PropTypes.number,
+    longitude:  PropTypes.number,
+    zoom: PropTypes.number  
+  }).isRequired,
 };

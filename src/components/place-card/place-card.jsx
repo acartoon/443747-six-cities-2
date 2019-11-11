@@ -40,6 +40,7 @@ const PlaceCard = ({offer, onActiveCard, onTitleClick}) => {
     </div>
   </article>;
 };
+
 PlaceCard.propTypes = {
   offer: offersPropTypes.isRequired,
   onActiveCard: PropTypes.func,

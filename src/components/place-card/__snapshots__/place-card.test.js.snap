@@ -6,13 +6,7 @@ exports[`PlaceList component render correct 1`] = `
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
-  <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
+  
   <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
@@ -23,7 +17,6 @@ exports[`PlaceList component render correct 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
         width="260"
       />
     </a>
