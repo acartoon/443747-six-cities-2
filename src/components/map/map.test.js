@@ -21,6 +21,11 @@ jest.mock(`leaflet`, () => {
         setView: jest.fn(),
       };
     }),
+    layerGroup: jest.fn().mockImplementation(() => {
+      return {
+        setView: jest.fn(),
+      };
+    }),
   };
 });
 
@@ -28,7 +33,12 @@ it(`Map component render correct`, () => {
   const tree = renderer
       .create(
           <Map
-            offers = {OFFERS}
+            activeCity={{
+              latitude: 52.38333,
+              longitude:  4.9,
+              zoom: 12
+            }}
+            coords={[52.3909553943508, 4.85309666406198]}
           />
       )
     .toJSON();
